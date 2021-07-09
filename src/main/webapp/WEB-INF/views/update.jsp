@@ -8,7 +8,7 @@
 </head>
 <body>
   <script type="text/javascript">
-    location.href='/SpringBoardPractice/${boardName}/${curPage}/${board.id}';
+    location.href='/SpringBoardPractice/${boardName}/${board.id}';
   </script>
 </body>
 </html>

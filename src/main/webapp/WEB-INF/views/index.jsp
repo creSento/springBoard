@@ -32,7 +32,7 @@
           <c:forEach var="board" items="${boardList }">
           <div class="row" style="margin: 2em auto; padding: 1em;">
           <button class="btn btn-default"
-            onclick="location.href='${pageContext.request.contextPath}/${board.name}/1'">${board.name }</button>
+            onclick="location.href='${pageContext.request.contextPath}/${board.name}'">${board.name }</button>
           <button class="btn btn-warning" onclick="confirmDelete(${board.id})">Delete</button>
           </div>
           </c:forEach>

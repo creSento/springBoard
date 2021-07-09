@@ -35,29 +35,6 @@ class SpringBoardPracticeApplicationTests {
     @Autowired
     BoardRepository boardRepo;
 
-	@Test
-	void findById() {
-	    long total = repo.count();
-	    long exceptComment = repo.countByBoardIdAndParentIsNull(1);
-	    Pagination page = new Pagination(1, exceptComment);
-	    logger.info(page.toString());
-	    assertEquals(total, 1142);
-	    assertEquals(exceptComment, 1138);
-	}
-	
-	@Test
-	void search() {
-	    String keyWord = "홍길동";
-	    int curPage = 1;
-	    PageRequest page = PageRequest.of((curPage - 1) * 10, 10, Sort.by(Direction.DESC, "id"));
-	    Page<BoardItem> boardItemList = repo.findAllByTitleContainingAndParentIsNull(keyWord, page);
-//        Pagination pagination = new Pagination(curPage, repo.countByTitleContainingAndParentIsNull(keyWord));
-//        assertEquals(pagination.getTotal(), 9);
-        for (BoardItem item : boardItemList.getContent()) {
-            logger.info(item.toString());
-        }
-	}
-    
     @Test
     @Order(1)
     void findChildBoard() {
@@ -78,10 +55,10 @@ class SpringBoardPracticeApplicationTests {
     @Order(3)
     void findBoardItems() {
         // BoardItem findById
-        List<BoardItem> itemList = repo.findAllByBoardId(4);
-        for (BoardItem i : itemList) {
-            logger.info(i.toString());
-        }
+//        List<BoardItem> itemList = repo.findAllByBoardId(4);
+//        for (BoardItem i : itemList) {
+//            logger.info(i.toString());
+//        }
     }
 
     @Test

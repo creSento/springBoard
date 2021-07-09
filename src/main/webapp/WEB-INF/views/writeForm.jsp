@@ -35,7 +35,7 @@
         <div class="row">
           <button class="btn btn-default" type="submit">Write</button>
           <button class="btn btn-default"
-            onclick="location.href='${pageContext.request.contextPath}/${boardName}/1'" type="button">Cancel</button>
+            onclick="location.href='${pageContext.request.contextPath}/${boardName}'" type="button">Cancel</button>
         </div>
       </form>
     </div>

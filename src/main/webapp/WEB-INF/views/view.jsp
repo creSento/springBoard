@@ -77,9 +77,9 @@
       	    'comment': newComment,
       	  });
       	  console.log(paramData);
-      	  console.log('${pageContext.request.contextPath}/${boardName}/${curPage }/${board.id}/updateComment');
+      	  console.log('${pageContext.request.contextPath}/${boardName}/${board.id}/updateComment');
       	  $.ajax({
-      	    url: '${pageContext.request.contextPath}/${boardName}/${curPage }/${board.id}/updateComment',
+      	    url: '${pageContext.request.contextPath}/${boardName}/${board.id}/updateComment',
       	    data: paramData,
       	    type: 'POST',
       	    dataType: 'text',
@@ -92,7 +92,7 @@
       	    }
       	  })
       	}
-      	function confirmDelete(id) {
+      	function confirmDeleteComment(id) {
       	  var commId = parseInt(id);
       	  if (confirm("댓글을 삭제합니다")) {
       	    deleteComment(commId);
@@ -107,7 +107,7 @@
       	    'id': commId
       	  });
       	  $.ajax({
-      	    url: '${pageContext.request.contextPath}/${boardName}/${curPage }/${board.id}/deleteComment',
+      	    url: '${pageContext.request.contextPath}/${boardName}/${board.id}/deleteComment',
       	    data: paramData,
       	    type: 'POST',
       	    dataType: 'text',
@@ -131,13 +131,13 @@
                 onclick="chageMode(${comm.id })">
                 <input class="btn btn-sm btn-default" type="button"
                 value="Delete"
-                onclick="confirmDelete(${comm.id})">
+                onclick="confirmDeleteComment(${comm.id})">
               </td>
             </tr>
           </c:forEach>
         </table>
         <!-- <form name="commentForm"> -->
-        <form action="${pageContext.request.contextPath}/${boardName}/${curPage }/${board.id}/writeComment" method="post">
+        <form action="${pageContext.request.contextPath}/${boardName}/${board.id}/writeComment" method="post">
           <input type="hidden" name="parent" value="${board.id }">
           <div class="col-xs-10">
             <textarea class="form-control" name="comment" rows="4"></textarea>
@@ -150,9 +150,9 @@
       <p>
       <div class="row">
         <button class="btn btn-default" type="button"
-          onclick="location.href='${pageContext.request.contextPath}/${boardName}/${curPage }'">List</button>
+          onclick="location.href='${pageContext.request.contextPath}/${boardName}'">List</button>
         <button class="btn btn-default" type="button"
-          onclick="location.href='${pageContext.request.contextPath}/${boardName}/${curPage }/${board.id }/updateForm'">Modify</button>
+          onclick="location.href='${pageContext.request.contextPath}/${boardName}/${board.id }/updateForm'">Modify</button>
         <button class="btn btn-default" type="button"
           onclick="confirmDelete(${board.id})">Delete</button>
       </div>

@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import kr.ac.kopo.ctc.kopo19.domain.Board;
 import kr.ac.kopo.ctc.kopo19.domain.BoardItem;
@@ -22,8 +25,8 @@ public class AddTest {
     @Autowired
     BoardItemRepository itemRepo;
     
-    @Test
-    @Transactional
+//    @Test
+//    @Transactional
     void testA() {
 //        BoardItem item = new BoardItem("title", new Date(System.currentTimeMillis()), "content", null, null, 0, null);
         BoardItem item = new BoardItem();
@@ -43,5 +46,13 @@ public class AddTest {
         for (BoardItem b : list) {
             System.out.println(b.toString());
         }
+    }
+    
+    
+    @Test
+    void testB() {
+        PageRequest page = PageRequest.of(0, 10);
+        Page<BoardItem> postPage = itemRepo.findAll(page);
+        postPage.getTotalElements();
     }
 }

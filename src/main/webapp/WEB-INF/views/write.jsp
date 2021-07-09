@@ -8,7 +8,7 @@
 </head>
 <body>
   <script type="text/javascript">
-  	location.href='${pageContext.request.contextPath}/${boardName}/1';
+  	location.href='${pageContext.request.contextPath}/${boardName}';
   </script>
 </body>
 </html>

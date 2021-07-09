@@ -15,7 +15,7 @@
 <body>
   <div class="container">
     <div class="col-md-9">
-      <form action="/SpringBoardPractice/${boardName}/${curPage }/${board.id }/update" method="post">
+      <form action="/SpringBoardPractice/${boardName}/${board.id }/update" method="post">
         <div class="row">
           <table class="table .table-bordered .table-hover">
             <tbody>

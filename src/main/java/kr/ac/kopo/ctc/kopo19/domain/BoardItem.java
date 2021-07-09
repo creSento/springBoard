@@ -36,12 +36,11 @@ public class BoardItem {
     int hit;
     @Formula("(select count(1) from board_item as bc where bc.parent = id)")
     int commentSize;
-    
-    // optional : nulluble or not(false = nullable)
     @ManyToOne(optional = false)
     @JoinColumn(name = "b_id")
     Board board;
 
+    // optional : nulluble or not(false = nullable)
     public BoardItem() {
     }
 

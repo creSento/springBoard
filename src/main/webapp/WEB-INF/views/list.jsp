@@ -27,13 +27,14 @@
             </tr>
           </thead>
           <tbody>
-            <c:forEach var="board" items="${boardItemList }">
+            <c:forEach var="board" items="${boardItemList.content }">
               <tr>
                 <td>${board.id }</td>
                 <td style="width: 60%;">
                   <span style="font-size:medium;">
-                  <a href="${pageContext.request.contextPath}/${boardName}/${pagination.currentPage }/${board.id }">
-                  ${board.title}</a>
+                  <a href="${pageContext.request.contextPath}/${boardName}/${board.id }">
+                  ${board.title}
+                  </a>
                   </span>
                   <c:if test="${board.commentSize > 0}">
                   <span style="font-size:small;">
@@ -53,14 +54,12 @@
           <button class="btn btn-default"
             onclick="location.href='${pageContext.request.contextPath}/${boardName}/writeForm'">Write</button>
           <button class="btn btn-default"
-            onclick="location.href='${pageContext.request.contextPath}/${boardName}/${pagination.currentPage }'">List</button>
-          <button class="btn btn-default"
             onclick="location.href='${pageContext.request.contextPath}/main'">Main</button>
         </div>
       </div>
       <p>
       <div class="row form-group" align="center">
-        <form action="${pageContext.request.contextPath}/${boardName}/${pagination.currentPage }" method="post">
+        <form action="${pageContext.request.contextPath}/${boardName}" method="post">
           <div class="col-xs-9">
             <input class="form-control" type="text" name="keyWord">
           </div>
@@ -70,37 +69,35 @@
         </form>
       </div>
       <div class="row" align="center">
-        <div class="col-md-9 center-block">
-          <div class="pagination">
-            <input type="hidden" name="page"
-              value="${pagination.currentPage}">
-            <c:if test="${pagination.startPage > pagination.pagePerBlock }">
-              <button
-                onclick="location.href='${pageContext.request.contextPath}/${boardName}/${pagination.startPage}'"
-                class="btn btn-default btn-sm">&laquo;</button>
-            </c:if>
-            <c:forEach var="i" begin="${pagination.startPage }"
-              end="${pagination.endPage }">
-              <c:if test="${pagination.currentPage == i }">
-                <button
-                  onclick="location.href='${pageContext.request.contextPath}/${boardName}/${i}"
-                  class="btn btn-primary btn-sm" disabled="disabled">${i }</button>
+        <div class="col-md-9 text-xs-center">
+          <ul class="pagination justify-content-center">
+            <c:choose>
+              <c:when test="${boardItem.first }"></c:when>
+              <c:otherwise>
+                <li><a href="${pageContext.request.contextPath}/${boardName}?page=${boardItemList.number - 1}">&laquo;</a></li>
+<!--                 <button -->
+<%--                 onclick="location.href='${pageContext.request.contextPath}/${boardName}?page=${boardItemList.number - 1}'" --%>
+<!--                 class="btn btn-default btn-sm">&laquo;</button> -->
+              </c:otherwise>
+            </c:choose>
+            <c:forEach var="i" begin="${pagination.startPage }" end="${pagination.endPage }">
+              <c:if test="${boardItemList.pageable.pageNumber + 1 == i }">
+                <li class="disabled"><a href="${pageContext.request.contextPath}/${boardName}?page=${i}">${i }</a></li>
               </c:if>
-              <c:if test="${pagination.currentPage != i }">
-                <button
-                  onclick="location.href='${pageContext.request.contextPath}/${boardName}/${i}'"
-                  class="btn btn-default btn-sm">${i }</button>
+              <c:if test="${boardItemList.pageable.pageNumber + 1 != i }">
+                <li class="acitve"><a href="${pageContext.request.contextPath}/${boardName}?page=${i}">${i }</a></li>
               </c:if>
             </c:forEach>
-            <c:if test="${pagination.endPage < pagination.totalPage }">
-              <button
-                onclick="location.href='${pageContext.request.contextPath}/${boardName}/${pagination.endPage}'"
-                class="btn btn-default btn-sm">&raquo;</button>
-            </c:if>
+            <c:choose>
+              <c:when test="${boardItem.last }"></c:when>
+              <c:otherwise>
+                <li><a href="${pageContext.request.contextPath}/${boardName}?page=${boardItemList.number + 1}">&raquo;</a></li>
+              </c:otherwise>
+            </c:choose>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </body>
 </html>
