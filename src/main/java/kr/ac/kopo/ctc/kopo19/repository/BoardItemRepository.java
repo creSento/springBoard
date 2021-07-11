@@ -13,12 +13,12 @@ import kr.ac.kopo.ctc.kopo19.domain.BoardItem;
 
 public interface BoardItemRepository extends JpaRepository<BoardItem, Integer> {
     
-    @Query("select b from BoardItem b where title like concat('%', :searchString, '%')"
-            + "or content like concat('%', :searchString, '%') and b_id = :boardId and parent is null")
+    @Query("select b from BoardItem b where (title like concat('%', :searchString, '%')"
+            + "or content like concat('%', :searchString, '%')) and b_id = :boardId and parent is null")
     Page<BoardItem> getListOptionalKeyWord(@Param("searchString") String searchString, @Param("boardId") int boardId, Pageable pageable);
     
-    @Query("select count(b) from BoardItem b where title like concat('%', :searchString, '%')"
-            + "or content like concat('%', :searchString, '%') and b_id = :boardId and parent is null")
+    @Query("select count(b) from BoardItem b where (title like concat('%', :searchString, '%')"
+            + "or content like concat('%', :searchString, '%')) and b_id = :boardId and parent is null")
     long getCountOptionalKeyWord(@Param("searchString") String searchString, @Param("boardId") int boardId);
     
     List<BoardItem> findAllByParent(int parent);
